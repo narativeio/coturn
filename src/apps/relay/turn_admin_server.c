@@ -3264,8 +3264,12 @@ static void handle_https(ioa_socket_handle s, ioa_network_buffer_handle nbh) {
     write_https_logon_page(s);
     TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: HTTPS write https logon page finished\n", __FUNCTION__);
   } else {
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: HTTPS ioa_network_buffer_data\n", __FUNCTION__);
     ((char *)ioa_network_buffer_data(nbh))[ioa_network_buffer_get_size(nbh)] = 0;
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: HTTPS parse_http_request\n", __FUNCTION__);
     struct http_request *hr = parse_http_request((char *)ioa_network_buffer_data(nbh));
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: HTTPS parse_http_request finished\n", __FUNCTION__);
+
     if (!hr) {
       TURN_LOG_FUNC(TURN_LOG_LEVEL_ERROR, "%s: wrong HTTPS request (I cannot parse it)\n", __FUNCTION__);
       write_https_logon_page(s);
