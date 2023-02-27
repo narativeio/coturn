@@ -3260,7 +3260,9 @@ static void handle_https(ioa_socket_handle s, ioa_network_buffer_handle nbh) {
   }
 
   if (!nbh) {
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: HTTPS write https logon page started\n", __FUNCTION__);
     write_https_logon_page(s);
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: HTTPS write https logon page finished\n", __FUNCTION__);
   } else {
     ((char *)ioa_network_buffer_data(nbh))[ioa_network_buffer_get_size(nbh)] = 0;
     struct http_request *hr = parse_http_request((char *)ioa_network_buffer_data(nbh));
