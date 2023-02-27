@@ -3734,10 +3734,15 @@ void https_admin_server_receive_message(struct bufferevent *bev, void *ptr) {
 }
 
 void send_https_socket(ioa_socket_handle s) {
+  TURN_LOG_FUNC(TURN_LOG_LEVEL_ERROR, "%s: HTTPS: send_https_socket first\n", __FUNCTION__);
   struct evbuffer *output = bufferevent_get_output(adminserver.https_out_buf);
+  TURN_LOG_FUNC(TURN_LOG_LEVEL_ERROR, "%s: HTTPS: bufferevent_get_output\n", __FUNCTION__);
   if (output) {
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_ERROR, "%s: HTTPS: evbuffer_add first\n", __FUNCTION__);
     evbuffer_add(output, &s, sizeof(s));
+    TURN_LOG_FUNC(TURN_LOG_LEVEL_ERROR, "%s: HTTPS: evbuffer_add end\n", __FUNCTION__);
   }
+  TURN_LOG_FUNC(TURN_LOG_LEVEL_ERROR, "%s: HTTPS: send_https_socket end\n", __FUNCTION__);
 }
 
 ///////////////////////////////
