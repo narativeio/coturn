@@ -2889,7 +2889,7 @@ static void eventcb_bev(struct bufferevent *bev, short events, void *arg) {
 }
 
 static int ssl_send(ioa_socket_handle s, const char *buffer, int len, int verbose) {
-
+  TURN_LOG_FUNC(TURN_LOG_LEVEL_INFO, "%s: ssl_send\n", __FUNCTION__);
   if (!s || !(s->ssl) || !buffer || (s->fd < 0))
     return -1;
 
